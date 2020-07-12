@@ -1,0 +1,15 @@
+[package]
+name = "zk_cli"
+version = "0.1.0"
+authors = ["Stepan Repin <stnrepin@gmail.com>"]
+readme = "README.md"
+edition = "2018"
+
+[[bin]]
+name = "zk"
+path = "zk/main.rs"
+
+[workspace]
+members = ["zk_core"]
+
+[dependencies]
