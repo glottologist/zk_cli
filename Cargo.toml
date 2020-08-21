@@ -13,4 +13,4 @@ path = "zk/main.rs"
 members = ["zk_core"]
 
 [dependencies]
-clap = "^2.0.0"
+zk_core = { path = "zk_core" }

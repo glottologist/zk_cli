@@ -3,12 +3,12 @@ use std::str::FromStr;
 extern crate yaml_rust;
 use yaml_rust::{Yaml, YamlLoader};
 
-struct Config {
+pub struct Config {
     working_dir: String, // TODO: use &str?
 }
 
 #[derive(Debug, PartialEq)]
-enum ConfigParsingError {
+pub enum ConfigParsingError {
     YamlBadFormat(String),
     YamlIsMultiDocument(),
     FieldMissing(String),

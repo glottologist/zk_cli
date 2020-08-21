@@ -1,31 +1,7 @@
 use std::io::Write;
 use clap::App;
 
-pub struct Environment<'a> {
-    output: &'a mut dyn Write,
-}
-
-impl Environment<'_> {
-    fn new<'a, W: Write>(w: &'a mut W) -> Environment<'a> {
-        Environment {
-            output: w,
-        }
-    }
-}
-
-// TODO: consider error_chain crate?
-#[derive(Debug)]
-pub enum ZkCommandExecutionErrorKind {
-    ArgumentParsing(clap::Error),
-    UnknownCommand(String)
-}
-
-pub trait ZkCommand {
-    fn new() -> Self where Self: Sized;
-    fn name(&self) -> &'static str;
-    fn run(&self, env: &mut Environment) -> Result<(), ZkCommandExecutionErrorKind>;
-    fn build_clap_subcmd(&self) -> App<'static, 'static>;
-}
+use crate::command_system::{Environment, ZkCommand, ZkCommandExecutionErrorKind};
 
 pub struct ZkApp<'a> {
     args: Vec<String>,
@@ -77,7 +53,7 @@ impl ZkApp<'_> {
 mod test {
     use clap::{App, SubCommand};
     use super::{ZkCommand, ZkCommandExecutionErrorKind, ZkApp, Environment};
-    
+
     //
     // TODO: There are a lot of duplicated code in tests. I tried to get rid of
     // it but failed due to borrow checker errors.

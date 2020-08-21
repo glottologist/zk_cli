@@ -1,7 +1,5 @@
-mod app;
-
-use app::ZkApp;
-use app::ZkCommandExecutionErrorKind;
+use zk_core::app::ZkApp;
+use zk_core::command_system::ZkCommandExecutionErrorKind;
 
 fn main() {
     let mut output = std::io::stdout();

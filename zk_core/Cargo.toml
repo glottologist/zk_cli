@@ -5,4 +5,5 @@ authors = ["Stepan Repin <stnrepin@gmail.com>"]
 edition = "2018"
 
 [dependencies]
+clap = "^2.0.0"
 yaml-rust = "0.4"
